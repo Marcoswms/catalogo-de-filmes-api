@@ -73,32 +73,56 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function carregarFilmes() {
 
+        console.log("1 - carregarFilmes foi chamada!");
+
         fetch("http://localhost:8080/filmes")
             .then(function(response) {
+
+            console.log("2 - Resposta recebida:");
+            console.log("Status:", response.status);
+
             return response.json();
         })
             .then(function(filmes) {
 
+            console.log("3 - JSON convertido");
+
             listaFilmes = filmes;
+
+            if (filmes.length === 0) {
+                tabela.innerHTML = `
+                        <tr>
+                            <td colspan="7" class="text-center">
+                                Nenhum filme cadastrado.
+                            </td>
+                        </tr>
+                    `;
+                return;
+            }
+
+            console.log("4 - Existem filmes!");
 
             let linhas = "";
             filmes.forEach(function(filme) {
                 linhas += `
-                <tr>
-                    <td>${filme.id}</td>
-                    <td>${filme.titulo}</td>
-                    <td>${filme.genero}</td>
-                    <td>${filme.anoLancamento}</td>
-                    <td>${filme.nota}</td>
-                    <td>${filme.assistido}</td>
-                    <td>
-                        <button type="button" data-id="${filme.id}" class="btn-editar btn btn-outline-warning btn-sm me-2">Editar</button>
-                        <button type="button" data-id="${filme.id}" class="btn-excluir btn btn-outline-danger btn-sm me-2">Excluir</button>
-                    </td>
-                </tr>`;
+                    <tr>
+                        <td>${filme.id}</td>
+                        <td>${filme.titulo}</td>
+                        <td>${filme.genero}</td>
+                        <td>${filme.anoLancamento}</td>
+                        <td>${filme.nota}</td>
+                        <td>${filme.assistido}</td>
+                        <td>
+                            <button type="button" data-id="${filme.id}" class="btn-editar btn btn-outline-warning btn-sm me-2">Editar</button>
+                            <button type="button" data-id="${filme.id}" class="btn-excluir btn btn-outline-danger btn-sm me-2">Excluir</button>
+                        </td>
+                    </tr>`;
             });
 
             tabela.innerHTML = linhas;
+        })
+            .catch(function(erro) {
+            console.error("ERRO AO CARREGAR FILMES:", erro);
         });
     }
 
@@ -219,7 +243,7 @@ document.addEventListener("DOMContentLoaded", function() {
     function mostrarMensagem(texto, tipo) {
 
         mensagem.innerHTML = `
-        <div class="alert-${tipo}" role="alert">
+        <div class="alert alert-${tipo}" role="alert">
             ${texto}
         </div>`;
 
