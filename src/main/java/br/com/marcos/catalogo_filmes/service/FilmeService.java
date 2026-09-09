@@ -1,5 +1,6 @@
 package br.com.marcos.catalogo_filmes.service;
 
+import br.com.marcos.catalogo_filmes.exception.FilmeNaoEncontradoException;
 import br.com.marcos.catalogo_filmes.model.Filme;
 import br.com.marcos.catalogo_filmes.repository.FilmeRepository;
 import org.springframework.stereotype.Service;
@@ -24,8 +25,9 @@ public class FilmeService {
         return repository.save(filme);
     }
 
-    public Optional<Filme> buscarPorId(Long id) {
-        return repository.findById(id);
+    public Filme buscarPorId(Long id) {
+        return repository.findById(id)
+                .orElseThrow(() -> new FilmeNaoEncontradoException("Filme não encontrado."));
     }
 
     public Optional<Filme> atualizarPorId(Long id, Filme filmeAtualizado) {

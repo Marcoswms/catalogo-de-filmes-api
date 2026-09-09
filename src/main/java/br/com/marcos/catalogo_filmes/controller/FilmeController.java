@@ -30,12 +30,9 @@ public class FilmeController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Filme> buscarPorId(@PathVariable Long id) {
-        Optional<Filme> filme = service.buscarPorId(id);
+        Filme filme = service.buscarPorId(id);
 
-        if (filme.isPresent()) {
-            return ResponseEntity.ok(filme.get());
-        }
-        return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(filme);
     }
 
     @PutMapping("/{id}")

@@ -73,19 +73,14 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function carregarFilmes() {
 
-        console.log("1 - carregarFilmes foi chamada!");
-
         fetch("http://localhost:8080/filmes")
             .then(function(response) {
 
-            console.log("2 - Resposta recebida:");
             console.log("Status:", response.status);
 
             return response.json();
         })
             .then(function(filmes) {
-
-            console.log("3 - JSON convertido");
 
             listaFilmes = filmes;
 
@@ -99,8 +94,6 @@ document.addEventListener("DOMContentLoaded", function() {
                     `;
                 return;
             }
-
-            console.log("4 - Existem filmes!");
 
             let linhas = "";
             filmes.forEach(function(filme) {
