@@ -56,7 +56,7 @@ class FilmeServiceTest {
         when(repository.findById(1L)).thenReturn(Optional.empty());
 
         FilmeNaoEncontradoException exception = assertThrows(
-                FilmeNaoEncontradoException.class, () -> service.buscarPorId(1l)
+                FilmeNaoEncontradoException.class, () -> service.buscarPorId(1L)
         );
 
         assertEquals("Filme não encontrado.", exception.getMessage());
