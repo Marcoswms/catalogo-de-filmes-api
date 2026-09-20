@@ -137,7 +137,7 @@ Após a operação, o frontend atualiza a lista de filmes através de uma nova r
 
 O projeto utiliza PostgreSQL para armazenamento dos filmes.
 
-A entidade principal é Filme possui os seguintes atributos:
+A entidade principal é Filme, possuindo os seguintes atributos:
 
     Campo	            Tipo	        Descrição
     
@@ -438,7 +438,7 @@ Antes de executar a aplicação, é necessário ter instalado:
    
     cd catalogo-de-filmes.java
 
-### 1. Configurar banco de dados PostgreSQL
+### 1. Configurar o banco de dados - PostgreSQL
 
 Crie um banco de dados chamado:
 
@@ -502,7 +502,7 @@ Algumas melhorias planejadas para futuras versões do projeto:
 
 - [ ] Adicionar documentação da API com Swagger/OpenAPI.
 
-Objetivo do projeto
+## Objetivo do projeto
 
 Este projeto foi desenvolvido principalmente como forma de estudo e prática de conceitos relacionados ao desenvolvimento de aplicações web.
 
